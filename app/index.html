@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Autostart</title>
+  </head>
+  <style>
+    body {
+      color: #fff;
+      background: black;
+      width: 100%;
+    }
+    #terminal {
+      font-size: 18px;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <h1>Autostart</h1>
+    <code id="terminal"></code>
+    <script src="./webOSTVjs-1.2.4/webOSTV.js" charset="utf-8"></script>
+    <script src="./webOSTVjs-1.2.4/webOSTV-dev.js" charset="utf-8"></script>
+    <script type="text/javascript">
+      var terminal = document.getElementById("terminal");
+      function log(message) {
+        terminal.innerHTML += new Date().toString() + " : " + message + "<br>";
+      }
+      log("Initializing...");
+      setTimeout(() => {
+        log("Making call");
+        webOS.service.request("luna://org.webosbrew.hbchannel.service", {
+          method: "autostart",
+          parameters: { subscribe: true },
+          onSuccess: function (res) {
+            log("success: " + JSON.stringify(res));
+          },
+          onFailure: function (res) {
+            log("error: " + JSON.stringify(res));
+          },
+        });
+      }, 1);
+    </script>
+  </body>
+</html>

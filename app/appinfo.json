@@ -1,0 +1,15 @@
+{
+  "id": "org.webosbrew.autostart",
+  "version": "0.0.1",
+  "vendor": "webosbrew.org",
+  "title": "Autostart",
+  "icon": "icon80.png",
+  "largeIcon": "icon160.png",
+  "noSplashOnLaunch": true,
+  "main": "index.html",
+  "type": "web",
+  "appDescription": "Autostart script handler",
+  "visible": true,
+  "supportQuickStart": true,
+  "dialAppName": "Autostart"
+}
