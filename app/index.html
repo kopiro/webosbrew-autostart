@@ -13,19 +13,26 @@
       font-size: 18px;
       width: 100%;
     }
+    #button {
+      display: block;
+      width: 300px;
+      margin-bottom: 1em;
+    }
   </style>
   <body>
     <h1>Autostart</h1>
+    <button id="button">Relaunch</button>
     <code id="terminal"></code>
     <script src="./webOSTVjs-1.2.4/webOSTV.js" charset="utf-8"></script>
     <script src="./webOSTVjs-1.2.4/webOSTV-dev.js" charset="utf-8"></script>
     <script type="text/javascript">
       var terminal = document.getElementById("terminal");
+
       function log(message) {
         terminal.innerHTML += new Date().toString() + " : " + message + "<br>";
       }
-      log("Initializing...");
-      setTimeout(() => {
+
+      function makeCall() {
         log("Making call");
         webOS.service.request("luna://org.webosbrew.hbchannel.service", {
           method: "autostart",
@@ -37,7 +44,12 @@
             log("error: " + JSON.stringify(res));
           },
         });
-      }, 1);
+      }
+
+      document.getElementById("button").addEventListener("click", makeCall);
+
+      log("Initializing...");
+      makeCall();
     </script>
   </body>
 </html>
