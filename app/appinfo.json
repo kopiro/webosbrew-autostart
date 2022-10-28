@@ -11,5 +11,6 @@
   "appDescription": "Autostart script handler",
   "visible": true,
   "supportQuickStart": true,
+  "supportGIP": true,
   "dialAppName": "Autostart"
 }
