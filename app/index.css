@@ -1,0 +1,18 @@
+body {
+  color: #fff;
+  background: black;
+}
+#terminal {
+  font-size: 14px;
+  width: 100%;
+  font-family: monospace;
+  line-height: 12px;
+}
+#logo {
+  position: fixed;
+  width: 150px;
+  top: 50%;
+  left: 50%;
+  margin-left: -75px;
+  margin-top: -75px;
+}
