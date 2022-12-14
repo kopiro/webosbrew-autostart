@@ -2,12 +2,21 @@ body {
   color: #fff;
   background: black;
 }
+
 #terminal {
-  font-size: 14px;
+  font-size: 20px;
   width: 100%;
   font-family: monospace;
-  line-height: 12px;
 }
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
 #logo {
   position: fixed;
   width: 150px;

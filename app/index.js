@@ -2,9 +2,11 @@ var terminal = document.getElementById("terminal");
 var errorCount = 0;
 var maxRetries = 3;
 
-function log(message) {
-  terminal.innerHTML +=
-    "[" + new Date().toLocaleString() + "] " + message + "<br>";
+function log(message, className = "") {
+  const div = document.createElement("div");
+  div.className = className;
+  div.innerText = "[" + new Date().toLocaleString() + "] " + message;
+  terminal.appendChild(div);
 }
 
 function launchHomebrewStartup() {
@@ -16,14 +18,14 @@ function launchHomebrewStartup() {
       onSuccess: function (res) {
         errorCount = 0;
         log("Startup success: " + JSON.stringify(res));
-        log("You can now use your TV.");
+        log("You can now use your TV.", "success");
       },
       onFailure: function (res) {
         errorCount++;
-        log("Startup failure: " + JSON.stringify(res));
+        log("Startup failure: " + JSON.stringify(res), "error");
         if (errorCount < 3) {
           log("Retrying, retries left: " + (maxRetries - errorCount));
-          setTimeout(launchHomebrewStartup, 0);
+          setTimeout(launchHomebrewStartup, 500);
         }
       },
     });
@@ -46,14 +48,17 @@ function registerAutostart() {
         description: "testing", // optional, description rendered in "All inputs"
       },
       onSuccess: function (res) {
-        log("EIM - success: " + JSON.stringify(res));
+        log("Register autostart (EIM) - success: " + JSON.stringify(res));
       },
       onFailure: function (res) {
-        log("EIM - failure: " + JSON.stringify(res));
+        log(
+          "Register autostart (EIM) - failure: " + JSON.stringify(res),
+          "error"
+        );
       },
     });
   } catch (err) {
-    log("EIM - error: " + err.message);
+    log("Register autostart (EIM) - error: " + err.message);
   }
 }
 
