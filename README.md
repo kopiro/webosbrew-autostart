@@ -14,11 +14,19 @@ Add this repository `https://repo.webosapp.club` and install Telnet.
 
 Once you have started it, `telnet lgwebostv.local` then start original SSH with `luna-send -n 1 "luna://org.webosbrew.hbchannel.service/autostart" "{}"`.
 
-Check if SSH is now working with `ssh root@lgwebostv.local`
+#### Download and install the app
 
-#### Publishing the app
+SSH in the TV with `ssh root@lgwebostv.local` and run:
 
-Install `ares-cli` tools with `npm install -g @webosose/ares-cli`, then setup your connection with `ares-setup-device`
+```sh
+wget -O /home/root/webosbrew-autostart.ipk https://github.com/kopiro/webosbrew-autostart/raw/main/org.webosbrew.autostart_0.0.2_all.ipk
+luna-send-pub -i 'luna://com.webos.appInstallService/dev/install' '{"id":"com.ares.defaultName","subscribe":true,"ipkUrl":"/home/root/webosbrew-autostart.ipk"}'
+```
+
+#### Rebuilding and installing the app
+
+In case you want to make some modifications, install `ares-cli` tools with `npm install -g @webosose/ares-cli`,
+then setup your connection with `ares-setup-device`
 
 Read more [here](https://webostv.developer.lge.com/develop/tools/cli-introduction).
 
@@ -26,7 +34,7 @@ Now cloen the repo with `git clone https://github.com/kopiro/webosbrew-autostart
 
 ```sh
 cd ./webosbrew-autostart
-ares-install ./org.webosbrew.autostart_0.0.1_all.ipk
+[make your changes]
+ares-package ./app
+ares-install ./org.webosbrew.autostart*
 ```
-
-If you make some changes to the app, just run `ares-package ./app` and reinstall.
