@@ -20,7 +20,7 @@ SSH in the TV with `ssh root@lgwebostv.local` and run:
 
 ```sh
 wget -O /home/root/webosbrew-autostart.ipk https://github.com/kopiro/webosbrew-autostart/raw/main/org.webosbrew.autostart_0.0.2_all.ipk
-luna-send-pub -i 'luna://com.webos.appInstallService/dev/install' '{"id":"com.ares.defaultName","subscribe":true,"ipkUrl":"/home/root/webosbrew-autostart.ipk"}'
+luna-send-pub -i 'luna://com.webos.appInstallService/dev/install' '{"id":"org.webosbrew.autostart","subscribe":true,"ipkUrl":"/home/root/webosbrew-autostart.ipk"}'
 ```
 
 #### Rebuilding and installing the app
